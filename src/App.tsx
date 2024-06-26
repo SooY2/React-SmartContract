@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import detectEthereumProvider from '@metamask/detect-provider';
+import ConnectWallet from './components/ConnectWallet';
+import Stake from './components/Stake';
+import { provider } from './signer';
 
 const App: React.FC = () => {
   const [account, setAccount] = useState<string | null>(null);
@@ -7,7 +10,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const setup = async () => {
-      const provider = await detectEthereumProvider();
+      // const provider = await detectEthereumProvider();
 
       if (provider && provider === window.ethereum) {
         console.log('MetaMask is available!');
@@ -43,43 +46,16 @@ const App: React.FC = () => {
     window.location.reload();
   };
 
-  const getAccount = async () => {
-    try {
-      const accounts = await window.ethereum.request({
-        method: 'eth_requestAccounts',
-      });
-      setAccount(accounts[0]);
-    } catch (err) {
-      if (err.code === 4001) {
-        console.log('Please connect to MetaMask.');
-      } else {
-        console.error(err);
-      }
-    }
-  };
-  const changeNetwork = async () => {
-    console.log('changeNet');
-    try {
-      await window.ethereum.request({
-        method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0xe34' }],
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <div className='App'>
-      <h1>MetaMask Integration with React and TypeScript</h1>
-      <button onClick={getAccount}>Connect MetaMask</button>
-      <button onClick={changeNetwork}>Change Network</button>
-      {account && (
+      {!account && <ConnectWallet setAccount={setAccount} />}
+      {/* {account && (
         <div className='showAccount'>
           <p>Connected Account: {account}</p>
           <p>Chain ID: {chainId}</p>
         </div>
-      )}
+      )} */}
+      <Stake />
     </div>
   );
 };
