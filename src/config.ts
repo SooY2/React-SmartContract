@@ -1,14 +1,16 @@
 import { http, createConfig } from 'wagmi';
 import { base, mainnet, optimism } from 'wagmi/chains';
 import { injected, metaMask, safe, walletConnect } from 'wagmi/connectors';
+import { mantaSepoliaTestnet } from 'viem/chains';
 
 const projectId = '<WALLETCONNECT_PROJECT_ID>';
 
 export const config = createConfig({
-  chains: [mainnet, base],
+  chains: [mantaSepoliaTestnet],
   connectors: [injected(), walletConnect({ projectId }), metaMask(), safe()],
   transports: {
-    [mainnet.id]: http(),
-    [base.id]: http(),
+    [mantaSepoliaTestnet.id]: http(
+      'https://pacific-rpc.sepolia-testnet.manta.network/http'
+    ),
   },
 });

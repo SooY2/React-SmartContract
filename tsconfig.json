@@ -1,11 +1,25 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
+  "compilerOptions": {
+    "target": "es6", // ECMAScript 타겟 버전
+    "module": "commonjs", // 모듈 시스템
+    "lib": ["es6", "dom"], // 사용 가능한 라이브러리
+    "allowJs": true, // JavaScript 파일 컴파일 허용
+    "checkJs": false, // JavaScript 파일 타입 검사
+    "jsx": "react", // JSX 처리 방식 (react, react-native, preserve)
+    "declaration": true, // .d.ts 파일 생성
+    "sourceMap": true, // 소스 맵 파일 생성
+    "outDir": "./dist", // 출력 디렉토리
+    "rootDir": "./src", // 입력 파일 루트 디렉토리
+    "strict": true, // 모든 엄격한 타입 검사 옵션 활성화
+    "noImplicitAny": true, // 암시적 any 타입 사용 금지
+    "moduleResolution": "node", // 모듈 해석 방법
+    "baseUrl": ".", // 기본 디렉토리
+    "paths": {
+      "@components/*": ["src/components/*"] // 경로 별칭
     },
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+    "esModuleInterop": true, // ES 모듈 interop
+    "skipLibCheck": true // 라이브러리 타입 검사 건너뜀
+  },
+  "include": ["src/**/*"], // 컴파일 포함 대상
+  "exclude": ["node_modules", "**/*.spec.ts"] // 컴파일 제외 대상
 }
