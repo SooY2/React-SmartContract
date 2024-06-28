@@ -5,7 +5,7 @@ import {
   useWeb3ModalAccount,
   useWeb3ModalProvider,
 } from 'web3modal-web3js/react';
-import { MY_TOKEN_ADDRESS } from '../address';
+import { MY_TOKEN_ADDRESS, TOKEN_STAKE_ADDRESS } from '../address';
 
 const Balance = () => {
   const { address, chainId, isConnected } = useWeb3ModalAccount();

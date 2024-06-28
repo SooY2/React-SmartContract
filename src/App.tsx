@@ -1,4 +1,6 @@
 import Balance from './components/Balance';
+import Stake from './components/Stake';
+import UnStake from './components/UnStake';
 import Wallet from './components/Wallet';
 
 function App() {
@@ -6,6 +8,8 @@ function App() {
     <>
       <Wallet />
       <Balance />
+      <Stake />
+      <UnStake />
     </>
   );
 }
